@@ -9,10 +9,10 @@ project(scattercc
 include(cmake/Predef.cmake)
 
 
-# Choose _WIN32_WINNT definition on Windows or Cygwin
-if (SCC_TARGET_WINDOWS OR SCC_TARGET_CYGWIN)
+# Choose _WIN32_WINNT definition on Windows/Cygwin/MSYS
+if (SCC_TARGET_WINDOWS OR SCC_TARGET_CYGWIN OR SCC_TARGET_MSYS)
     set(SCATTERCC_WIN32_WINNT "0x0601" CACHE STRING
-        "Define _WIN32_WINNT on Windows or Cygwin (default: Windows 7)")
+        "Define _WIN32_WINNT on Windows/Cygwin/MSYS (default: Windows 7)")
 endif()
 
 
@@ -54,8 +54,8 @@ function(scc_set_common_properties Target)
     find_package(Threads REQUIRED)
     target_link_libraries(${Target} PRIVATE Threads::Threads)
 
-    # Add some definitions on Windows or Cygwin
-    if (SCC_TARGET_WINDOWS OR SCC_TARGET_CYGWIN)
+    # Add some definitions on Windows/Cygwin/MSYS
+    if (SCC_TARGET_WINDOWS OR SCC_TARGET_CYGWIN OR SCC_TARGET_MSYS)
         target_compile_definitions(${Target} PRIVATE _WIN32_WINNT=${SCATTERCC_WIN32_WINNT})
         target_compile_definitions(${Target} PRIVATE NOMINMAX)
     endif()
@@ -77,11 +77,6 @@ function(scc_set_common_properties Target)
 
     # Enable all compiler warnings by default
     if (SCC_COMPILER_MSVC)
-        # Remove the default warning level (if any)
-        # See: https://stackoverflow.com/questions/45995784/how-to-set-compiler-options-with-cmake-in-visual-studio-2017
-        # TODO: need confirmation
-        #string(REGEX REPLACE "/W[0-4]" "" CMAKE_CXX_FLAGS_INIT "${CMAKE_CXX_FLAGS_INIT}")
-
         # Then set /W4 for MSVC
         target_compile_options(${Target} PRIVATE "/W4")
 

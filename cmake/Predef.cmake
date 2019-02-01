@@ -47,6 +47,9 @@ if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
 elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "CYGWIN")
     message(STATUS "Set SCC_TARGET_CYGWIN to ON")
     set(SCC_TARGET_CYGWIN ON)
+elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "MSYS")
+    message(STATUS "Set SCC_TARGET_MSYS to ON")
+    set(SCC_TARGET_MSYS ON)
 else()
     message(FATAL_ERROR "Unknown target system: ${CMAKE_SYSTEM_NAME}")
 endif ()
@@ -68,3 +71,17 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 else()
     message(FATAL_ERROR "Unknown compiler: ${CMAKE_CXX_COMPILER_ID}")
 endif ()
+
+
+#
+# MSVC patch: remove defaulted "/W3" flag
+#
+if (SCC_COMPILER_MSVC)
+    # Remove the default warning level (if any)
+    #   See: https://stackoverflow.com/questions/45995784/how-to-set-compiler-options-with-cmake-in-visual-studio-2017
+    # This is hacky!
+    # NOTE: CMAKE_<LANG>_FLAGS_INIT is not documented in earlier versions of CMake (CMake < 3.13.x), but works
+    # NOTE: regex \s (whitespace chars) are NOT recognized by CMake...
+    string(REGEX REPLACE "( |\t)+/W[0-4]( |\t)+" " " CMAKE_CXX_FLAGS_INIT "${CMAKE_CXX_FLAGS_INIT}")
+    string(REGEX REPLACE "( |\t)+/W[0-4]( |\t)+" " " CMAKE_C_FLAGS_INIT "${CMAKE_C_FLAGS_INIT}")
+endif()
