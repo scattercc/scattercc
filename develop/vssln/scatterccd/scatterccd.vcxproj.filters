@@ -2,12 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="src">
-      <UniqueIdentifier>{20a56a8a-5a3a-45bd-92d5-3a3db4b391ab}</UniqueIdentifier>
+      <UniqueIdentifier>{45aded25-f6a9-4b85-b13c-2bfeb6af41a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\scattercc.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
+    <ClCompile Include="..\..\..\src\scatterccd.cpp" />
   </ItemGroup>
 </Project>

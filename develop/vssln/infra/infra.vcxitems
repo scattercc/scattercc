@@ -14,10 +14,10 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\infra\infra.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\infra\infra.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\infra\infra.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\infra\infra\maybe_unused.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\infra\infra.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\infra\infra\maybe_unused.h" />
   </ItemGroup>
 </Project>
