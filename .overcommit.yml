@@ -25,6 +25,12 @@ PreCommit:
 
   LineEndings:
     enabled: true
+    exclude:
+      - develop/vssln/scattercc.sln
+      - develop/vssln/*.vcxproj
+      - develop/vssln/*.vcxproj.filters
+      - develop/vssln/*.vcxitems
+      - develop/vssln/*.vcxitems.filters
     eol: "\n"
 
   ExecutePermissions:
