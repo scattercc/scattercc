@@ -16,7 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\infra\infra.h" />
+    <ClInclude Include="..\..\..\infra\infra\ide.h" />
     <ClInclude Include="..\..\..\infra\infra\maybe_unused.h" />
+    <ClInclude Include="..\..\..\infra\mswin\mswin.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -61,7 +63,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;__THIS_IS_SCATTERCC__=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;__THIS_IS_SCATTERCC__=1;SCC_TARGET_WINDOWS=1;SCC_COMPILER_MSVC=1;_WIN32_WINNT=0x0601;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -82,7 +84,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;__THIS_IS_SCATTERCC__=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;__THIS_IS_SCATTERCC__=1;SCC_TARGET_WINDOWS=1;SCC_COMPILER_MSVC=1;_WIN32_WINNT=0x0601;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>

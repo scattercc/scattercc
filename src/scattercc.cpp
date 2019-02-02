@@ -12,6 +12,19 @@ namespace scattercc
             infra::maybe_unused(argc, argv, env);
 
             printf("Hello from scattercc: sizeof(void*) = %d\n", (int)sizeof(void*));
+
+#if SCC_TARGET_WINDOWS || SCC_TARGET_CYGWIN || SCC_TARGET_MSYS
+            const DWORD ret = ::QueueUserAPC([](ULONG_PTR data) {
+                printf("[APC] data: %lx\n", static_cast<ULONG>(data));
+            }, GetCurrentThread(), 0xdeedbeef);
+            printf("QueueUserAPC returns %lu\n", ret);
+
+            if (ret)
+            {
+                SleepEx(INFINITE, TRUE);
+            }
+#endif
+
             return 0;
         }
     };  // class scattercc_instance

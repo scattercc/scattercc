@@ -10,6 +10,9 @@
     <Filter Include="infra\infra">
       <UniqueIdentifier>{b9e08b3f-52fa-40e0-acc8-7d03022596b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="infra\mswin">
+      <UniqueIdentifier>{d7cdc285-6e30-43a0-a719-1856b5499dbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\scatterccd.cpp">
@@ -25,6 +28,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\infra\infra\maybe_unused.h">
       <Filter>infra\infra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\infra\ide.h">
+      <Filter>infra\infra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\mswin\mswin.h">
+      <Filter>infra\mswin</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
