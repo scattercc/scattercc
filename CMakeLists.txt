@@ -29,6 +29,9 @@ option(SCATTERCC_TREAT_WARNINGS_AS_ERRORS
     OFF)
 if (SCATTERCC_TREAT_WARNINGS_AS_ERRORS)
     message(STATUS "NOTE: Treat all warnings as errors!")
+
+    # Also, use verbose Makefile
+    set(CMAKE_VERBOSE_MAKEFILE ON)
 endif()
 
 
