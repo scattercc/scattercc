@@ -32,7 +32,7 @@
     <ClInclude Include="..\..\..\infra\infra\ide.h">
       <Filter>infra\infra</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\infra\mswin\mswin.h">
+    <ClInclude Include="..\..\..\infra\mswin\target.h">
       <Filter>infra\mswin</Filter>
     </ClInclude>
   </ItemGroup>

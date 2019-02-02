@@ -1,5 +1,5 @@
-#if !defined(_INFRA_MAYBE_UNUSED_H_INCLUDED_)
-#define _INFRA_MAYBE_UNUSED_H_INCLUDED_
+#if !defined(_INFRA_INFRA_MAYBE_UNUSED_H_INCLUDED_)
+#define _INFRA_INFRA_MAYBE_UNUSED_H_INCLUDED_
 
 namespace infra
 {
@@ -17,4 +17,4 @@ namespace infra
 
 }  // namespace infra
 
-#endif  // defined(_INFRA_MAYBE_UNUSED_H_INCLUDED_)
+#endif  // defined(_INFRA_INFRA_MAYBE_UNUSED_H_INCLUDED_)

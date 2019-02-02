@@ -18,7 +18,7 @@
     <ClInclude Include="..\..\..\infra\infra.h" />
     <ClInclude Include="..\..\..\infra\infra\ide.h" />
     <ClInclude Include="..\..\..\infra\infra\maybe_unused.h" />
-    <ClInclude Include="..\..\..\infra\mswin\mswin.h" />
+    <ClInclude Include="..\..\..\infra\mswin\target.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -1,5 +1,5 @@
-#if !defined(_INFRA_IDE_H_INCLUDED_)
-#define _INFRA_IDE_H_INCLUDED_
+#if !defined(_INFRA_INFRA_IDE_H_INCLUDED_)
+#define _INFRA_INFRA_IDE_H_INCLUDED_
 
 //
 // Make sure INFRA_IDE_MODE is either not defined, or defined as true-like
@@ -22,4 +22,4 @@
 #endif  // defined(__INTELLISENSE__) || defined(__RESHARPER__)
 
 
-#endif  // !defined(_INFRA_IDE_H_INCLUDED_)
+#endif  // !defined(_INFRA_INFRA_IDE_H_INCLUDED_)

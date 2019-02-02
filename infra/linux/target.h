@@ -1,5 +1,5 @@
-#if !defined(_LINUX_TARGET_H_INCLUDED_)
-#define _LINUX_TARGET_H_INCLUDED_
+#if !defined(_INFRA_LINUX_TARGET_H_INCLUDED_)
+#define _INFRA_LINUX_TARGET_H_INCLUDED_
 
 
-#endif  // !defined(_LINUX_TARGET_H_INCLUDED_)
+#endif  // !defined(_INFRA_LINUX_TARGET_H_INCLUDED_)
