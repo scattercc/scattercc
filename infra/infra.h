@@ -5,7 +5,10 @@
 // Include target platform dependent headers
 //
 #if SCC_TARGET_WINDOWS || SCC_TARGET_CYGWIN || SCC_TARGET_MSYS
-#   include "mswin/mswin.h"
+#   include "mswin/target.h"
+#elif SCC_TARGET_LINUX
+#   include "posix_base/target.h"
+#   include "linux/target.h"
 #else
 #   error "Unknown target: None of SCC_TARGET_XXX is true-like"
 #endif  // ...

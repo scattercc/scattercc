@@ -1,0 +1,5 @@
+#if !defined(_POSIX_BASE_TARGET_H_INCLUDED_)
+#define _POSIX_BASE_TARGET_H_INCLUDED_
+
+
+#endif  // !defined(_POSIX_BASE_TARGET_H_INCLUDED_)

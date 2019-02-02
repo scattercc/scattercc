@@ -1,5 +1,5 @@
-#if !defined(_MSWIN_MSWIN_H_INCLUDED_)
-#define _MSWIN_MSWIN_H_INCLUDED_
+#if !defined(_MSWIN_TARGET_H_INCLUDED_)
+#define _MSWIN_TARGET_H_INCLUDED_
 
 #if !defined(_WIN32_WINNT)
 #error "_WIN32_WINNT is not defined"
@@ -11,4 +11,4 @@
 
 #include <Windows.h>
 
-#endif  // !defined(_MSWIN_MSWIN_H_INCLUDED_)
+#endif  // !defined(_MSWIN_TARGET_H_INCLUDED_)
