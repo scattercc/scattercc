@@ -5,16 +5,9 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scattercc", "scattercc\scattercc.vcxproj", "{BEEEDD12-A863-472E-9140-F59B0BFBCE78}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "infra", "infra\infra.vcxitems", "{69BC4C2C-DA30-4CF4-B85B-9B07A4B6DF69}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scatterccd", "scatterccd\scatterccd.vcxproj", "{01127971-8C4B-41ED-BE59-D47C084FA590}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		infra\infra.vcxitems*{01127971-8c4b-41ed-be59-d47c084fa590}*SharedItemsImports = 4
-		infra\infra.vcxitems*{69bc4c2c-da30-4cf4-b85b-9b07a4b6df69}*SharedItemsImports = 9
-		infra\infra.vcxitems*{beeedd12-a863-472e-9140-f59b0bfbce78}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Release|x64 = Release|x64

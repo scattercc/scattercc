@@ -4,8 +4,27 @@
     <Filter Include="src">
       <UniqueIdentifier>{20a56a8a-5a3a-45bd-92d5-3a3db4b391ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="infra">
+      <UniqueIdentifier>{a1cdd291-0179-4767-8102-2e343e45baad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="infra\infra">
+      <UniqueIdentifier>{8dc6dc2a-37e2-46ea-9e23-c29cb88fb5a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\scattercc.cpp" />
+    <ClCompile Include="..\..\..\src\scattercc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\infra\infra.cpp">
+      <Filter>infra</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\infra\infra.h">
+      <Filter>infra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\infra\maybe_unused.h">
+      <Filter>infra\infra</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
