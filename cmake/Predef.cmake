@@ -74,6 +74,13 @@ endif ()
 
 
 #
+# Show compiler features
+#
+message(STATUS "C compiler features: ${CMAKE_C_COMPILE_FEATURES}")
+message(STATUS "C++ compiler features: ${CMAKE_CXX_COMPILE_FEATURES}")
+
+
+#
 # MSVC patch: remove defaulted "/W3" flag
 #
 if (SCC_COMPILER_MSVC)

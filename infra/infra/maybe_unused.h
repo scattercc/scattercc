@@ -15,6 +15,6 @@ namespace infra
         // Just a dummy function...
     }
 
-}  // infra
+}  // namespace infra
 
 #endif  // defined(_INFRA_MAYBE_UNUSED_H_INCLUDED_)
