@@ -20,6 +20,7 @@
 #include <predef/types.h>
 
 #include <basic/basic_math.h>
+#include <basic/integer_to_string.h>
 #include <basic/string.h>
 
 #endif  // !defined(_INFRA_INFRA_H_INCLUDED_)

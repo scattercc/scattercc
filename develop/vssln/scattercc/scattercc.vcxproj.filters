@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\..\test\infra\test_types.cpp">
       <Filter>test\infra</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\test\infra\test_integer_to_string.cpp">
+      <Filter>test\infra</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\infra\infra.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\infra\warnings\conditional_expression_is_constant\restore.h">
       <Filter>infra\warnings\conditional_expression_is_constant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\basic\integer_to_string.h">
+      <Filter>infra\basic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

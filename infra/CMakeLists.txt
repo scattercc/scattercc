@@ -23,6 +23,11 @@ target_sources(infra INTERFACE
     ${CMAKE_CURRENT_LIST_DIR}/predef/static_assert.h
     ${CMAKE_CURRENT_LIST_DIR}/predef/types.h
 
+    # basic
+    ${CMAKE_CURRENT_LIST_DIR}/basic/basic_math.h
+    ${CMAKE_CURRENT_LIST_DIR}/basic/integer_to_string.h
+    ${CMAKE_CURRENT_LIST_DIR}/basic/string.h
+
     # warnings disable & restore
     ${CMAKE_CURRENT_LIST_DIR}/warnings/conditional_expression_is_constant/disable.h
     ${CMAKE_CURRENT_LIST_DIR}/warnings/conditional_expression_is_constant/restore.h
