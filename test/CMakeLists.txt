@@ -35,4 +35,5 @@ endmacro()
 
 add_test_executable(test_infra
     infra/main.cpp
+    infra/test_types.cpp
     infra/test_string.cpp)
