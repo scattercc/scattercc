@@ -40,6 +40,10 @@ PreCommit:
 
   ExecutePermissions:
     enabled: true
+    exclude:
+      - ci/**/*.sh
+      - develop/ci/*.sh
+      - develop/ci/*.py
 
   # Custom hooks for scattercc
   CppHeaderIncludeOnceGuard:
