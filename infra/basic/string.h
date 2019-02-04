@@ -107,6 +107,114 @@ namespace infra
             return result;
         }
 
+        /**
+         * Searches the string for the first character, which matches ANY of the characters
+         * specified in argument "chars".
+         * If "start" is specified, the search only includes characters at or after that position,
+         * ignoring any possible occurrences before "start".
+         * If not found, returns -1.
+         */
+        template<size_type _NChars>
+        constexpr size_type find_first_of(const TCh (&chars)[_NChars], size_type start = 0) const noexcept
+        {
+            for (size_type pos = start; pos < length(); ++pos)
+            {
+                for (size_type i = 0; i < length_of_cstr(chars); ++i)
+                {
+                    if (value[pos] == chars[i]) return pos;
+                }
+            }
+            return (size_type)-1;
+        }
+
+        /**
+         * Searches the string for the last character, which matches ANY of the characters
+         * specified in argument "chars".
+         * If "start" is specified, the search only includes characters at or before that position,
+         * ignoring any possible occurrences after "start".
+         * If not found, returns -1.
+         */
+        template<size_type _NChars>
+        constexpr size_type find_last_of(const TCh (&chars)[_NChars], size_type start = _Size - 1) const noexcept
+        {
+            for (size_type pos = min(start, length() - 1); pos != (size_type)-1; --pos)
+            {
+                for (size_type i = 0; i < length_of_cstr(chars); ++i)
+                {
+                    if (value[pos] == chars[i]) return pos;
+                }
+            }
+            return (size_type)-1;
+        }
+
+        /**
+         * Return the substring of current string starting from "_Start", with length "_Length"
+         */
+        template<size_type _Start, size_type _Length>
+        constexpr auto sub_string() const noexcept
+        {
+            // Make sure not overflow!
+            INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Start, _Length);
+
+            INFRA_STATIC_ASSERT(_Start < _Size);
+            INFRA_STATIC_ASSERT(_Start + _Length < _Size);
+
+            string<TCh, _Length + 1> result;
+            result.template copy<_Start, 0, _Length, 1, _Size>(value);
+            return result;
+        }
+
+        /**
+         * Return the substring of current string starting from "_Start"
+         */
+        template<size_type _Start>
+        constexpr auto sub_string() const noexcept
+        {
+            INFRA_STATIC_ASSERT(_Start < _Size);
+
+            return sub_string<_Start, (_Size - 1) - _Start>();
+        }
+
+        /**
+         * Add padding at end of current string with specific character
+         */
+        template<size_type _Length>
+        constexpr auto pad_right(const TCh ch) const noexcept
+        {
+            INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Length, 1);
+            INFRA_STATIC_ASSERT(_Length + 1 >= _Size);
+
+            string<TCh, _Length + 1> result(ch);
+            result.template copy<0, 0, _Size - 1, 1, _Size>(value);
+            return result;
+        }
+
+        /**
+         * Add padding at left of current string with specific character
+         */
+        template<size_type _Length>
+        constexpr auto pad_left(const TCh ch) const noexcept
+        {
+            INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Length, 1);
+            INFRA_STATIC_ASSERT(_Length + 1 >= _Size);
+
+            string<TCh, _Length + 1> result(ch);
+            result.template copy<0, _Length + 1 - _Size, _Size - 1, 1, _Size>(value);
+            return result;
+        }
+
+        /**
+         * Returns true if this string is NOT truncated by inner NULL terminator.
+         */
+        constexpr bool contains_no_null_char() const noexcept
+        {
+            for (size_type pos = 0; pos < length(); ++pos)
+            {
+                if (value[pos] == NULL_CHAR) return false;
+            }
+            return true;
+        }
+
         template<size_type _StrSize>
         constexpr auto operator+(const TCh(&str)[_StrSize]) const noexcept
         {

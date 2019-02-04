@@ -27,6 +27,9 @@ PreCommit:
     enabled: true
     exclude:
       - develop/vssln/scattercc.sln
+      - thirdparty/**/*.cpp
+      - thirdparty/**/*.hpp
+      - thirdparty/**/*.h
 
   LineEndings:
     enabled: true
@@ -36,6 +39,9 @@ PreCommit:
       - develop/vssln/*/*.vcxproj.filters
       - develop/vssln/*/*.vcxitems
       - develop/vssln/*/*.vcxitems.filters
+      - thirdparty/**/*.cpp
+      - thirdparty/**/*.hpp
+      - thirdparty/**/*.h
     eol: "\n"
 
   ExecutePermissions:
@@ -49,7 +55,13 @@ PreCommit:
   CppHeaderIncludeOnceGuard:
     enabled: true
     description: 'Check C++ header files include-once guard'
-    include: '**/*.h'
+    include:
+      - '**/*.hpp'
+      - '**/*.h'
+    exclude:
+      #- thirdparty/**/*.cpp  # not included at all
+      - thirdparty/**/*.hpp
+      - thirdparty/**/*.h
 
 CommitMsg:
   CapitalizedSubject:

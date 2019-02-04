@@ -25,6 +25,12 @@
     <Filter Include="infra\warnings\integral_overflow">
       <UniqueIdentifier>{633f6e20-7d1d-4126-8cfc-cbf94c01bfc0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{fe4e34c9-93ae-4bb3-bf88-2ce313ce4431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\infra">
+      <UniqueIdentifier>{3615ecc4-4308-45e4-99de-9163aae9cf58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\scattercc.cpp">
@@ -32,6 +38,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\infra\infra.cpp">
       <Filter>infra</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\infra\test_string.cpp">
+      <Filter>test\infra</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\test\infra\main.cpp">
+      <Filter>test\infra</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
