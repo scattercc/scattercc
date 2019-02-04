@@ -125,7 +125,9 @@ docker exec --tty "$CONTAINER" bash -c '
     set -xe
     mkdir /build
     cd /build
-    cmake /scattercc -DCMAKE_BUILD_TYPE="$CI_BUILD_TYPE"
+    cmake /scattercc \
+        -DSCATTERCC_TREAT_WARNINGS_AS_ERRORS=ON \
+        -DCMAKE_BUILD_TYPE="$CI_BUILD_TYPE"
     make -j"$[NCPU+2]"
     ctest -VV
     '
