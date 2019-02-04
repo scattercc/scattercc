@@ -34,6 +34,7 @@ PreCommit:
   LineEndings:
     enabled: true
     exclude:
+      - "**/*.bat"
       - develop/vssln/scattercc.sln
       - develop/vssln/*/*.vcxproj
       - develop/vssln/*/*.vcxproj.filters
@@ -48,6 +49,7 @@ PreCommit:
     enabled: true
     exclude:
       - ci/**/*.sh
+      - ci/**/*.bat
       - develop/ci/*.sh
       - develop/ci/*.py
 

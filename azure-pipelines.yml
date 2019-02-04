@@ -1,0 +1,43 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+strategy:
+  matrix:
+    Windows-VS2017-Debug:
+      POOL_NAME: "Hosted VS2017"
+      IMAGE: vs2017-win2016
+      CI_GENERATOR: "Visual Studio 15 2017 Win64"
+      CI_BUILD_TYPE: Debug
+    Windows-VS2017-Release:
+      POOL_NAME: "Hosted VS2017"
+      IMAGE: vs2017-win2016
+      CI_GENERATOR: "Visual Studio 15 2017 Win64"
+      CI_BUILD_TYPE: Release
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      - dev
+      - dev/*
+    exclude:
+      - tmp
+      - temp
+      - tmp/*
+      - temp/*
+
+pool:
+  name: $(POOL_NAME)
+  vmImage: $(IMAGE)
+
+steps:
+  - task: BatchScript@1
+    displayName: 'Run: build.bat'
+    env:
+      CI_BUILD_TYPE: $(CI_BUILD_TYPE)
+      CI_GENERATOR: $(CI_GENERATOR)
+    inputs:
+      filename: ci/windows/build.bat
