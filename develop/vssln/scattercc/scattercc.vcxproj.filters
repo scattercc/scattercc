@@ -7,11 +7,23 @@
     <Filter Include="infra">
       <UniqueIdentifier>{a1cdd291-0179-4767-8102-2e343e45baad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="infra\infra">
-      <UniqueIdentifier>{8dc6dc2a-37e2-46ea-9e23-c29cb88fb5a3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="infra\mswin">
       <UniqueIdentifier>{2d036387-fb5e-4371-826c-bdb191ab563c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="infra\warnings">
+      <UniqueIdentifier>{792bcc6e-cb6f-49ff-86a8-8931c79b85a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="infra\basic">
+      <UniqueIdentifier>{8dc6dc2a-37e2-46ea-9e23-c29cb88fb5a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="infra\predef">
+      <UniqueIdentifier>{ab5e8ecd-8174-4b7a-90f2-823a14c97c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="infra\warnings\conditional_expression_is_constant">
+      <UniqueIdentifier>{ecd1ff86-858e-466e-9756-818705c4d8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="infra\warnings\integral_overflow">
+      <UniqueIdentifier>{633f6e20-7d1d-4126-8cfc-cbf94c01bfc0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -26,14 +38,38 @@
     <ClInclude Include="..\..\..\infra\infra.h">
       <Filter>infra</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\infra\infra\maybe_unused.h">
-      <Filter>infra\infra</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\infra\infra\ide.h">
-      <Filter>infra\infra</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\infra\mswin\target.h">
       <Filter>infra\mswin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\predef\ide.h">
+      <Filter>infra\predef</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\predef\maybe_unused.h">
+      <Filter>infra\predef</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\predef\static_assert.h">
+      <Filter>infra\predef</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\predef\types.h">
+      <Filter>infra\predef</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\basic\basic_math.h">
+      <Filter>infra\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\basic\string.h">
+      <Filter>infra\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\warnings\integral_overflow\disable.h">
+      <Filter>infra\warnings\integral_overflow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\warnings\integral_overflow\restore.h">
+      <Filter>infra\warnings\integral_overflow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\warnings\conditional_expression_is_constant\disable.h">
+      <Filter>infra\warnings\conditional_expression_is_constant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\warnings\conditional_expression_is_constant\restore.h">
+      <Filter>infra\warnings\conditional_expression_is_constant</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

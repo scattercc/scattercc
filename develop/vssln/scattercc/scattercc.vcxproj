@@ -15,10 +15,18 @@
     <ClCompile Include="..\..\..\src\scattercc.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\infra\basic\basic_math.h" />
+    <ClInclude Include="..\..\..\infra\basic\string.h" />
     <ClInclude Include="..\..\..\infra\infra.h" />
-    <ClInclude Include="..\..\..\infra\infra\ide.h" />
-    <ClInclude Include="..\..\..\infra\infra\maybe_unused.h" />
     <ClInclude Include="..\..\..\infra\mswin\target.h" />
+    <ClInclude Include="..\..\..\infra\predef\ide.h" />
+    <ClInclude Include="..\..\..\infra\predef\maybe_unused.h" />
+    <ClInclude Include="..\..\..\infra\predef\static_assert.h" />
+    <ClInclude Include="..\..\..\infra\predef\types.h" />
+    <ClInclude Include="..\..\..\infra\warnings\conditional_expression_is_constant\disable.h" />
+    <ClInclude Include="..\..\..\infra\warnings\conditional_expression_is_constant\restore.h" />
+    <ClInclude Include="..\..\..\infra\warnings\integral_overflow\disable.h" />
+    <ClInclude Include="..\..\..\infra\warnings\integral_overflow\restore.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -69,6 +77,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
       <AdditionalIncludeDirectories>$(SolutionDir)..\..\infra;$(SolutionDir)..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

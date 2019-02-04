@@ -14,7 +14,12 @@
 #endif  // ...
 
 
-#include "infra/ide.h"
-#include "infra/maybe_unused.h"
+#include <predef/ide.h>
+#include <predef/maybe_unused.h>
+#include <predef/static_assert.h>
+#include <predef/types.h>
+
+#include <basic/basic_math.h>
+#include <basic/string.h>
 
 #endif  // defined(_INFRA_INFRA_H_INCLUDED_)

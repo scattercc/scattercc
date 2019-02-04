@@ -11,14 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\infra\infra.cpp" />
     <ClCompile Include="..\..\..\src\scatterccd.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\infra\infra.h" />
-    <ClInclude Include="..\..\..\infra\infra\ide.h" />
-    <ClInclude Include="..\..\..\infra\infra\maybe_unused.h" />
-    <ClInclude Include="..\..\..\infra\mswin\mswin.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -69,6 +62,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

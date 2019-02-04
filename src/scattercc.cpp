@@ -15,9 +15,9 @@ namespace scattercc
 
 #if SCC_TARGET_WINDOWS || SCC_TARGET_CYGWIN || SCC_TARGET_MSYS
             const DWORD ret = ::QueueUserAPC([](ULONG_PTR data) {
-                printf("[APC] data: %lx\n", static_cast<ULONG>(data));
+                printf("[APC] data: %u\n", static_cast<ULONG>(data));
             }, GetCurrentThread(), 0xdeedbeef);
-            printf("QueueUserAPC returns %lu\n", ret);
+            printf("QueueUserAPC returns %u\n", ret);
 
             if (ret)
             {
