@@ -23,6 +23,11 @@ PreCommit:
   TrailingWhitespace:
     enabled: true
 
+  HardTabs:
+    enabled: true
+    exclude:
+      - develop/vssln/scattercc.sln
+
   LineEndings:
     enabled: true
     exclude:
@@ -35,6 +40,12 @@ PreCommit:
 
   ExecutePermissions:
     enabled: true
+
+  # Custom hooks for scattercc
+  CppHeaderIncludeOnceGuard:
+    enabled: true
+    description: 'Check C++ header files include-once guard'
+    include: '**/*.h'
 
 CommitMsg:
   CapitalizedSubject:

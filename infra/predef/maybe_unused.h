@@ -17,4 +17,4 @@ namespace infra
 
 }  // namespace infra
 
-#endif  // defined(_INFRA_PREDEF_MAYBE_UNUSED_H_INCLUDED_)
+#endif  // !defined(_INFRA_PREDEF_MAYBE_UNUSED_H_INCLUDED_)

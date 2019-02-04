@@ -22,4 +22,4 @@
 #include <basic/basic_math.h>
 #include <basic/string.h>
 
-#endif  // defined(_INFRA_INFRA_H_INCLUDED_)
+#endif  // !defined(_INFRA_INFRA_H_INCLUDED_)
