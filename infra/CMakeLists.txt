@@ -25,7 +25,9 @@ target_sources(infra INTERFACE
 
     # basic
     ${CMAKE_CURRENT_LIST_DIR}/basic/basic_math.h
+    ${CMAKE_CURRENT_LIST_DIR}/basic/datetime.h
     ${CMAKE_CURRENT_LIST_DIR}/basic/integer_to_string.h
+    ${CMAKE_CURRENT_LIST_DIR}/basic/printf.h
     ${CMAKE_CURRENT_LIST_DIR}/basic/string.h
 
     # warnings disable & restore
@@ -33,6 +35,10 @@ target_sources(infra INTERFACE
     ${CMAKE_CURRENT_LIST_DIR}/warnings/conditional_expression_is_constant/restore.h
     ${CMAKE_CURRENT_LIST_DIR}/warnings/integral_overflow/disable.h
     ${CMAKE_CURRENT_LIST_DIR}/warnings/integral_overflow/restore.h
+
+    # Compat
+    ${CMAKE_CURRENT_LIST_DIR}/compat/localtime.h
+    ${CMAKE_CURRENT_LIST_DIR}/compat/gmtime.h
 
     # Exposed header & source
     ${CMAKE_CURRENT_LIST_DIR}/infra.cpp

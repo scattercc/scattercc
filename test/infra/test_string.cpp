@@ -3,7 +3,7 @@
 
 TEST_CASE("Test infra::string", "[infra]")
 {
-    static constexpr const auto str = infra::make_string("abc") + infra::make_string("def");
+    static constexpr const auto str = "abc" + infra::make_string("def");
 
     INFRA_STATIC_ASSERT(str + "d" == "abcdefd");
     INFRA_STATIC_ASSERT(str + "" == str);
@@ -11,6 +11,9 @@ TEST_CASE("Test infra::string", "[infra]")
     INFRA_STATIC_ASSERT(str + "de" == str + 'd' + "e");
     INFRA_STATIC_ASSERT(str + infra::make_string('d') == "abcdefd");
     INFRA_STATIC_ASSERT(str + infra::make_string("d") == "abcdefd");
+    INFRA_STATIC_ASSERT("x" + str == "xabcdef");
+    INFRA_STATIC_ASSERT('x' + str == "xabcdef");
+    INFRA_STATIC_ASSERT("xy" + str == "xyabcdef");
 
     INFRA_STATIC_ASSERT(str[0] == 'a');
     INFRA_STATIC_ASSERT(str[1] == 'b');

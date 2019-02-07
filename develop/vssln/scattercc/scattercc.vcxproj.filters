@@ -7,9 +7,6 @@
     <Filter Include="infra">
       <UniqueIdentifier>{a1cdd291-0179-4767-8102-2e343e45baad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="infra\mswin">
-      <UniqueIdentifier>{2d036387-fb5e-4371-826c-bdb191ab563c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="infra\warnings">
       <UniqueIdentifier>{792bcc6e-cb6f-49ff-86a8-8931c79b85a9}</UniqueIdentifier>
     </Filter>
@@ -30,6 +27,12 @@
     </Filter>
     <Filter Include="test\infra">
       <UniqueIdentifier>{3615ecc4-4308-45e4-99de-9163aae9cf58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="infra\mswin">
+      <UniqueIdentifier>{2d036387-fb5e-4371-826c-bdb191ab563c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="infra\compat">
+      <UniqueIdentifier>{8ea6feba-6aa2-405a-b76d-e6b7cb9609bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +94,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\infra\basic\integer_to_string.h">
       <Filter>infra\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\basic\datetime.h">
+      <Filter>infra\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\basic\printf.h">
+      <Filter>infra\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\compat\gmtime.h">
+      <Filter>infra\compat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\compat\localtime.h">
+      <Filter>infra\compat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

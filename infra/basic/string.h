@@ -215,36 +215,6 @@ namespace infra
             return true;
         }
 
-        template<size_type _StrSize>
-        constexpr auto operator+(const TCh(&str)[_StrSize]) const noexcept
-        {
-            // Ensure no overflow
-            INFRA_STATIC_ASSERT(_StrSize > 0);
-            INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Size - 1, _StrSize - 1, 1);
-
-            string<TCh, (_Size - 1) + (_StrSize - 1) + 1> result;
-            result.template copy<0, 0, _Size - 1, 1, _Size>(value);
-            result.template copy<0, _Size - 1, _StrSize - 1, 1, _StrSize>(str);
-            return result;
-        }
-
-        constexpr auto operator+(const TCh ch) const noexcept
-        {
-            // Ensure no overflow
-            INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Size, 1);
-
-            string<TCh, _Size + 1> result;
-            result.template copy<0, 0, _Size - 1, 1, _Size>(value);
-            result.value[_Size - 1] = ch;
-            return result;
-        }
-
-        template<size_type _StrSize>
-        constexpr auto operator+(string<TCh, _StrSize> str) const noexcept
-        {
-            return operator+(str.value);
-        }
-
         constexpr const TCh& operator[](const size_type index) const noexcept
         {
             return value[index];
@@ -280,6 +250,54 @@ namespace infra
     };  // class string
 
 
+    template<typename TCh, size_type _Size1, size_type _Size2>
+    constexpr auto operator+(string<TCh, _Size1> str1, const TCh(&str2)[_Size2]) noexcept
+    {
+        // Ensure no overflow
+        INFRA_STATIC_ASSERT(_Size2 > 0);
+        INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Size1 - 1, _Size2 - 1, 1);
+
+        string<TCh, (_Size1 - 1) + (_Size2 - 1) + 1> result;
+        result.template copy<0, 0, _Size1 - 1, 1, _Size1>(str1.value);
+        result.template copy<0, _Size1 - 1, _Size2 - 1, 1, _Size2>(str2);
+        return result;
+    }
+
+    template<typename TCh, size_type _Size1, size_type _Size2>
+    constexpr auto operator+(string<TCh, _Size1> str1, string<TCh, _Size2> str2) noexcept
+    {
+        return str1 + str2.value;
+    }
+
+    template<typename TCh, size_type _Size1, size_type _Size2>
+    constexpr auto operator+(const TCh(&str1)[_Size1], string<TCh, _Size2> str2) noexcept
+    {
+        // Ensure no overflow
+        INFRA_STATIC_ASSERT(_Size2 > 0);
+        INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Size1 - 1, _Size2 - 1, 1);
+
+        return string<TCh, 1>() + str1 + str2;
+    }
+
+    template<typename TCh, size_type _Size>
+    constexpr auto operator+(const string<TCh, _Size> str, const TCh ch) noexcept
+    {
+        // Ensure no overflow
+        INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Size, 1);
+
+        return str + string<TCh, 2>(ch);
+    }
+
+    template<typename TCh, size_type _Size>
+    constexpr auto operator+(const TCh ch, const string<TCh, _Size> str) noexcept
+    {
+        // Ensure no overflow
+        INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Size, 1);
+
+        return string<TCh, 2>(ch) + str;
+    }
+
+
     template<size_type _Size>
     constexpr auto make_string(const string<char, _Size> str) noexcept
     {
@@ -302,7 +320,6 @@ namespace infra
     {
         return make_string("");
     }
-
 
 }  // namespace infra
 
