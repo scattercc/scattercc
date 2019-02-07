@@ -15,10 +15,11 @@
 #
 
 PreCommit:
-  #ALL:
-  #  exclude:
-  #    - "thirdparty/xxx/**/*"
-  #    - "thirdparty/yyy/**/*"
+  ALL:
+    quiet: false
+    #exclude:
+    #  - "thirdparty/xxx/**/*"
+    #  - "thirdparty/yyy/**/*"
 
   TrailingWhitespace:
     enabled: true
@@ -33,6 +34,7 @@ PreCommit:
 
   LineEndings:
     enabled: true
+    eol: "\n"
     exclude:
       - "**/*.bat"
       - develop/vssln/scattercc.sln
@@ -43,7 +45,6 @@ PreCommit:
       - thirdparty/**/*.cpp
       - thirdparty/**/*.hpp
       - thirdparty/**/*.h
-    eol: "\n"
 
   ExecutePermissions:
     enabled: true
