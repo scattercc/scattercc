@@ -59,7 +59,9 @@ namespace infra
         {
             static bool call(std::tm* const stm, const time_t* const stime)
             {
-                const errno_t err = localtime_s(stm, stime);
+                // Workaround: errno_t is not widely supported. thus we use `auto` here.
+                // If we directly use errno_t, compiler will complain...
+                const auto err = localtime_s(stm, stime);
                 return (err == 0);
             }
         };
