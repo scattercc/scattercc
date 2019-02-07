@@ -20,7 +20,9 @@
 #include <predef/types.h>
 
 #include <basic/basic_math.h>
+#include <basic/datetime.h>
 #include <basic/integer_to_string.h>
+#include <basic/logging.h>
 #include <basic/printf.h>
 #include <basic/string.h>
 

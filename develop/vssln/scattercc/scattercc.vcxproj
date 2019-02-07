@@ -34,6 +34,7 @@
     <ClInclude Include="..\..\..\infra\basic\basic_math.h" />
     <ClInclude Include="..\..\..\infra\basic\datetime.h" />
     <ClInclude Include="..\..\..\infra\basic\integer_to_string.h" />
+    <ClInclude Include="..\..\..\infra\basic\logging.h" />
     <ClInclude Include="..\..\..\infra\basic\printf.h" />
     <ClInclude Include="..\..\..\infra\basic\string.h" />
     <ClInclude Include="..\..\..\infra\compat\gmtime.h" />
