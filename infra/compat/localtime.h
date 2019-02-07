@@ -14,21 +14,21 @@ namespace infra
         std::false_type localtime(...);
 
         static constexpr const bool have_localtime_s =
-            std::is_same<
+            !std::is_same<
                 decltype(localtime_s(std::declval<tm*>(), std::declval<const time_t*>())),
-                errno_t
+                std::false_type
             >::value;
 
         static constexpr const bool have_localtime_r =
-            std::is_same<
+            !std::is_same<
                 decltype(localtime_r(std::declval<const time_t*>(), std::declval<tm*>())),
-                tm*
+                std::false_type
             >::value;
 
         static constexpr const bool have_localtime =
-            std::is_same<
+            !std::is_same<
                 decltype(localtime(std::declval<const time_t*>())),
-                tm*
+                std::false_type
             >::value;
 
 

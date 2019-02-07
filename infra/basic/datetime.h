@@ -28,7 +28,7 @@ namespace infra
             std::tm local_tm;
             if (!my_localtime(&local_tm, &now)) break;
 
-            result->year = local_tm.tm_year;
+            result->year = local_tm.tm_year + 1900;
             result->month = local_tm.tm_mon;
             result->day_of_month = local_tm.tm_mday;
             result->hour = local_tm.tm_hour;

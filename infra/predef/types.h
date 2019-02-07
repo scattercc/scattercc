@@ -90,6 +90,8 @@ namespace infra
 #define INFRA_CAT(_A_, _B_)     _A_##_B_
 #define INFRA_WSTR(_Text_)      INFRA_CAT(L, #_Text_)
 
+#define JUST(...)               __VA_ARGS__
+
 }  // namespace infra
 
 #endif  // !defined(_INFRA_PREDEF_TYPES_H_INCLUDED_)

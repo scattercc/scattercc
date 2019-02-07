@@ -1,6 +1,7 @@
 #include "infra.h"
 #include <ctime>
 #include <cstdio>
+#include <climits>
 #include "basic/datetime.h"
 
 namespace infra
@@ -72,7 +73,6 @@ namespace infra
                             second);
                     }
                 } while (false);
-                printf("Time zone: [%s]\n", __infra_time_zone);
             }
         } __infra_initializer;
 

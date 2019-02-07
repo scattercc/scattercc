@@ -35,6 +35,7 @@ endmacro()
 
 add_test_executable(test_infra
     infra/main.cpp
+    infra/test_assertion.cpp
     infra/test_types.cpp
     infra/test_string.cpp
     infra/test_integer_to_string.cpp)

@@ -11,15 +11,15 @@ namespace infra
     struct printf_format : printf_format<raw_type<T>, TCh>
     { };
 
-#define _INFRA_DECLARE_PRINTF_FORMAT(_TCh_, _Type_, _Format_) \
-    template<> \
+#define _INFRA_DECLARE_PRINTF_FORMAT(_TCh_, _Type_, _Format_, /*template*/...) \
+    template<__VA_ARGS__> \
     struct printf_format<_Type_, _TCh_> \
     { \
     private: \
-        template<size_type _Size> \
-        static constexpr auto to_string(const _TCh_(&str)[_Size]) noexcept \
+        template<size_type __Size> \
+        static constexpr auto to_string(const _TCh_(&str)[__Size]) noexcept \
         { \
-            return string<_TCh_, _Size>(str); \
+            return string<_TCh_, __Size>(str); \
         } \
     public: \
         static constexpr auto format() noexcept \
@@ -36,15 +36,22 @@ namespace infra
     _INFRA_DECLARE_PRINTF_FORMAT(char, unsigned int, "u");
     _INFRA_DECLARE_PRINTF_FORMAT(char, unsigned long int, "lu");
     _INFRA_DECLARE_PRINTF_FORMAT(char, unsigned long long int, "llu");
+    //_INFRA_DECLARE_PRINTF_FORMAT(char, float, "f");
+    //_INFRA_DECLARE_PRINTF_FORMAT(char, double, "lf");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, char, "c");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, char*, "s");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, const char*, "s");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, wchar_t*, "ls");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, std::string, "s");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, std::wstring, "ls");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, void*, "p");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, bool, "s");
+    _INFRA_DECLARE_PRINTF_FORMAT(char, char[_Size], "s", size_type _Size);
+    _INFRA_DECLARE_PRINTF_FORMAT(char, JUST(string<char, _Size>), "s", size_type _Size);
 
-    _INFRA_DECLARE_PRINTF_FORMAT(wchar_t, signed short int, INFRA_WSTR("hd"));
-    _INFRA_DECLARE_PRINTF_FORMAT(wchar_t, signed int, INFRA_WSTR("d"));
-    _INFRA_DECLARE_PRINTF_FORMAT(wchar_t, signed long int, INFRA_WSTR("ld"));
-    _INFRA_DECLARE_PRINTF_FORMAT(wchar_t, signed long long int, INFRA_WSTR("lld"));
-    _INFRA_DECLARE_PRINTF_FORMAT(wchar_t, unsigned short int, INFRA_WSTR("hu"));
-    _INFRA_DECLARE_PRINTF_FORMAT(wchar_t, unsigned int, INFRA_WSTR("u"));
-    _INFRA_DECLARE_PRINTF_FORMAT(wchar_t, unsigned long int, INFRA_WSTR("lu"));
-    _INFRA_DECLARE_PRINTF_FORMAT(wchar_t, unsigned long long int, INFRA_WSTR("llu"));
+
+    //_INFRA_DECLARE_PRINTF_FORMAT(wchar_t, signed short int, INFRA_WSTR("hd"));
+    // Add them accordingly if needed
 
 #undef _INFRA_DECLARE_PRINTF_FORMAT
 

@@ -14,21 +14,21 @@ namespace infra
         std::false_type gmtime(...);
 
         static constexpr const bool have_gmtime_s =
-            std::is_same<
+            !std::is_same<
                 decltype(gmtime_s(std::declval<tm*>(), std::declval<const time_t*>())),
-                errno_t
+                std::false_type
             >::value;
 
         static constexpr const bool have_gmtime_r =
-            std::is_same<
+            !std::is_same<
                 decltype(gmtime_r(std::declval<const time_t*>(), std::declval<tm*>())),
-                tm*
+                std::false_type
             >::value;
 
         static constexpr const bool have_gmtime =
-            std::is_same<
+            !std::is_same<
                 decltype(gmtime(std::declval<const time_t*>())),
-                tm*
+                std::false_type
             >::value;
 
 

@@ -54,6 +54,9 @@
     <ClCompile Include="..\..\..\test\infra\test_integer_to_string.cpp">
       <Filter>test\infra</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\test\infra\test_assertion.cpp">
+      <Filter>test\infra</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\infra\infra.h">
@@ -108,6 +111,9 @@
       <Filter>infra\compat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\infra\basic\logging.h">
+      <Filter>infra\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\infra\basic\assertion.h">
       <Filter>infra\basic</Filter>
     </ClInclude>
   </ItemGroup>

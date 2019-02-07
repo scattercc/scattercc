@@ -19,6 +19,7 @@
 #include <predef/static_assert.h>
 #include <predef/types.h>
 
+#include <basic/assertion.h>
 #include <basic/basic_math.h>
 #include <basic/datetime.h>
 #include <basic/integer_to_string.h>

@@ -3,6 +3,7 @@
 
 #include <predef/ide.h>
 #include <predef/static_assert.h>
+#include <predef/types.h>
 #include "./datetime.h"
 #include "./string.h"
 
@@ -52,7 +53,7 @@ namespace infra
             .value)
 
 #define INFRA_CURRENT_LINE \
-        (::infra::integer_to_string<size_type, size_type(__LINE__), 10>().value)
+        (::infra::integer_to_string<::infra::size_type, ::infra::size_type(__LINE__), 10>().value)
 
     }  // namespace details
 
@@ -93,7 +94,7 @@ namespace infra
             fprintf(::infra::details::__logging_file, \
                 _message_.value, \
                 _now_.year, _now_.month, _now_.day_of_month, _now_.hour, _now_.minute, _now_.second, \
-                __infra_time_zone, \
+                ::infra::details::__infra_time_zone, \
                 ##__VA_ARGS__); \
         } \
     } while(false)
