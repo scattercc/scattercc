@@ -40,6 +40,10 @@ endif()
 include(infra/CMakeLists.txt)
 
 
+# try_compile features/functions test
+include(cmake/try_compile/CMakeLists.txt)
+
+
 # function:
 #   scc_set_common_properties(Target)
 # Add common properties to `Target`

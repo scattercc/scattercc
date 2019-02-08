@@ -36,7 +36,7 @@ if not "%BUILD_REPOSITORY_LOCALPATH%"=="" (
     @echo BUILD_REPOSITORY_LOCALPATH defined: %BUILD_REPOSITORY_LOCALPATH%
     set REPOSITORY_PATH=%BUILD_REPOSITORY_LOCALPATH%
 ) else (
-    set REPOSITORY_PATH=C:\Cygwin64\home\wenho\scattercc
+    set REPOSITORY_PATH=%~dp0..\..\
 )
 pushd . || exit /b 1
 cd /D %REPOSITORY_PATH% || exit /b 1
@@ -63,8 +63,8 @@ cd /D %SystemDrive%\scattercc_build || exit /b 1
 
 cmake %REPOSITORY_PATH% -G "%CI_GENERATOR%" || exit /b 1
 
-cmake --build . --config %CI_BUILD_TYPE% -j %NUMBER_OF_PROCESSORS% --target ALL_BUILD || exit /b 1
-::cmake --build . --config %CI_BUILD_TYPE% --target ALL_BUILD || exit /b 1
+::cmake --build . --config %CI_BUILD_TYPE% -j %NUMBER_OF_PROCESSORS% --target ALL_BUILD || exit /b 1
+cmake --build . --config %CI_BUILD_TYPE% --target ALL_BUILD || exit /b 1
 
 ::cmake --build . --config %CI_BUILD_TYPE% --target INSTALL || exit /b 1
 
