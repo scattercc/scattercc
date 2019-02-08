@@ -1,17 +1,3 @@
-# CMP0054
-#   Only interpret if() arguments as variables or keywords when unquoted.
-# See https://cmake.org/cmake/help/v3.5/policy/CMP0054.html
-cmake_policy(SET CMP0054 NEW)
-
-#
-# scc_should_not_reach_here(ErrorMessage)
-#   Add linker options to Target
-#
-function(scc_should_not_reach_here ErrorMessage)
-    message(FATAL_ERROR "BUG: Should not reach here! ${ErrorMessage}")
-endfunction()
-
-
 #
 # Detect CMake version
 #
