@@ -21,8 +21,8 @@ namespace infra
         struct general_comparer_##_OpName_ \
         { \
             static constexpr bool compare( \
-                const raw_type<T1>& left, \
-                const raw_type<T2>& right \
+                const typename std::decay<T1>::type& left, \
+                const typename std::decay<T2>::type& right \
                 ) noexcept \
             { \
                 return left _Op_ right; \
@@ -32,15 +32,15 @@ namespace infra
         template<typename T1, typename T2> \
         struct string_comparer_##_OpName_ \
         { \
-            template<size_type _Size> \
+            template<size_t _Size> \
             static const char* cstr(const string<char, _Size>& s) noexcept { return s.value; } \
-            template<size_type _Size> \
+            template<size_t _Size> \
             static const char* cstr(const char(&s)[_Size]) noexcept { return s; } \
             static const char* cstr(const char* s) noexcept { return s; } \
             static const char* cstr(const std::string& s) noexcept { return s.c_str(); } \
             static bool compare( \
-                const typename raw_type<array_ref_to_ptr<T1>>::type& left, \
-                const typename raw_type<array_ref_to_ptr<T2>>::type& right \
+                const typename std::decay<T1>::type& left, \
+                const typename std::decay<T2>::type& right \
                 ) noexcept \
             { \
                 return strcmp(cstr(left), cstr(right)) _Op_ 0; \
@@ -67,9 +67,9 @@ namespace infra
             template<typename T>
             static constexpr
                 typename std::enable_if<
-                    std::is_fundamental<raw_type<T>>::value &&
-                    !std::is_same<raw_type<T>, bool>::value,
-                    const raw_type<T>&>::type
+                    std::is_fundamental<typename std::decay<T>::type>::value &&
+                    !std::is_same<typename std::decay<T>::type, bool>::value,
+                    const typename std::decay<T>::type&>::type
                 trans(const T& v)
             {
                 return v;
@@ -77,7 +77,7 @@ namespace infra
 
             template<typename T>
             static constexpr
-                typename std::enable_if<std::is_same<raw_type<T>, bool>::value, const char*>::type
+                typename std::enable_if<std::is_same<typename std::decay<T>::type, bool>::value, const char*>::type
                 trans(const T& v)
             {
                 return v ? "true" : "false";
@@ -85,7 +85,7 @@ namespace infra
 
             template<typename TStdString>
             static constexpr
-                typename std::enable_if<std::is_same<std::string, raw_type<TStdString>>::value, const char*>::type
+                typename std::enable_if<std::is_same<std::string, typename std::decay<TStdString>::type>::value, const char*>::type
                 trans(const TStdString& v)
             {
                 return v.c_str();

@@ -21,7 +21,7 @@ namespace infra
     }
 
 
-    template<size_type _Value1, size_type... _Others>
+    template<size_t _Value1, size_t... _Others>
     struct check_overflow_add
     {
     private:
@@ -29,22 +29,22 @@ namespace infra
 
     public:
 #include <warnings/integral_overflow/disable.h>
-        static constexpr const size_type result = _Value1 + remain::result;
+        static constexpr const size_t result = _Value1 + remain::result;
         static constexpr const bool overflow =
             (remain::overflow) ||
             (_Value1 + remain::result < max(_Value1, remain::result));
 #include <warnings/integral_overflow/restore.h>
     };
 
-    template<size_type _Value>
+    template<size_t _Value>
     struct check_overflow_add<_Value>
     {
-        static constexpr const size_type result = _Value;
+        static constexpr const size_t result = _Value;
         static constexpr const bool overflow = false;
     };
 
 
-    template<size_type _Value1, size_type... _Others>
+    template<size_t _Value1, size_t... _Others>
     struct check_overflow_mul
     {
     private:
@@ -52,7 +52,7 @@ namespace infra
 
     public:
 #include <warnings/integral_overflow/disable.h>
-        static constexpr const size_type result = _Value1 * remain::result;
+        static constexpr const size_t result = _Value1 * remain::result;
         static constexpr const bool overflow =
             (remain::overflow) ||
             (_Value1 != 0 &&
@@ -61,10 +61,10 @@ namespace infra
 #include <warnings/integral_overflow/restore.h>
     };
 
-    template<size_type _Value>
+    template<size_t _Value>
     struct check_overflow_mul<_Value>
     {
-        static constexpr const size_type result = _Value;
+        static constexpr const size_t result = _Value;
         static constexpr const bool overflow = false;
     };
 

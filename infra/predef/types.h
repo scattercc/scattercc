@@ -8,21 +8,11 @@
 
 namespace infra
 {
-    typedef std::size_t size_type;
+    typedef std::size_t size_t;
+    typedef std::make_signed<size_t>::type ssize_t;
 
-    typedef typename std::make_signed<size_type>::type ssize_type;
-
-    template<size_type _Value>
-    using size_type_constant = std::integral_constant<size_type, _Value>;
-
-
-
-    /**
-     * Removes any reference and const and/or volatile modifier(s) on given type T.
-     * Returns the underlying type.
-     */
-    template<typename T>
-    using raw_type = typename std::remove_cv<typename std::remove_reference<T>::type>::type;
+    template<size_t _Value>
+    using size_t_constant = std::integral_constant<size_t, _Value>;
 
 
     /**
@@ -30,11 +20,11 @@ namespace infra
      * const and/or volatile modifier(s), nor reference.
      */
     template<typename T>
-    struct is_raw_type
+    struct is_decayed_type
     {
-        typedef typename std::is_same<T, raw_type<T>>::value_type value_type;
+        typedef typename std::is_same<T, std::decay<T>>::value_type value_type;
 
-        static constexpr const value_type value = std::is_same<T, raw_type<T>>::value;
+        static constexpr const value_type value = std::is_same<T, typename std::decay<T>::type>::value;
 
         constexpr operator value_type() const noexcept { return value; }
 
@@ -42,55 +32,19 @@ namespace infra
     };
 
 
-    /**
-     * Convert to pointer type if T is reference to array
-     * Keep T as-is otherwise
-     */
-    template<typename T>
-    struct array_ref_to_ptr
-    {
-        typedef T type;
-    };
+    template<typename T, size_t _Size>
+    constexpr size_t length_of_array(const T(&)[_Size]) noexcept { return _Size; }
 
     template<typename T, size_t _Size>
-    struct array_ref_to_ptr<T[_Size]>
-    {
-        typedef T* type;
-    };
+    constexpr size_t length_of_array(const std::array<T, _Size>&) noexcept { return _Size; }
 
     template<typename T, size_t _Size>
-    struct array_ref_to_ptr<T(&)[_Size]>
-    {
-        typedef T* type;
-    };
-
-    template<typename T, size_t _Size>
-    struct array_ref_to_ptr<T(&&)[_Size]>
-    {
-        typedef T* type;
-    };
-
-
-    template<typename T, size_type _Size>
-    constexpr size_type length_of_array(const T(&)[_Size]) noexcept { return _Size; }
-
-    template<typename T, size_type _Size>
-    constexpr size_type length_of_array(const std::array<T, _Size>&) noexcept { return _Size; }
-
-    template<typename T, size_type _Size>
-    constexpr size_type length_of_cstr(const T(&)[_Size]) noexcept
+    constexpr size_t length_of_cstr(const T(&)[_Size]) noexcept
     {
         static_assert(_Size >= 1, "cstr must contain at least NULL terminator");
 
         return _Size - 1;
     }
-
-
-    // wchat_t
-#define INFRA_CAT(_A_, _B_)     _A_##_B_
-#define INFRA_WSTR(_Text_)      INFRA_CAT(L, #_Text_)
-
-#define JUST(...)               __VA_ARGS__
 
 }  // namespace infra
 

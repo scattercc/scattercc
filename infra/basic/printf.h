@@ -8,7 +8,7 @@
 namespace infra
 {
     template<typename T, typename TCh = char>
-    struct printf_format : printf_format<raw_type<T>, TCh>
+    struct printf_format : printf_format<typename std::decay<T>::type, TCh>
     { };
 
 #define _INFRA_DECLARE_PRINTF_FORMAT(_TCh_, _Type_, _Format_, /*template*/...) \
@@ -16,7 +16,7 @@ namespace infra
     struct printf_format<_Type_, _TCh_> \
     { \
     private: \
-        template<size_type __Size> \
+        template<size_t __Size> \
         static constexpr auto to_string(const _TCh_(&str)[__Size]) noexcept \
         { \
             return string<_TCh_, __Size>(str); \
@@ -46,22 +46,21 @@ namespace infra
     _INFRA_DECLARE_PRINTF_FORMAT(char, std::wstring, "ls");
     _INFRA_DECLARE_PRINTF_FORMAT(char, void*, "p");
     _INFRA_DECLARE_PRINTF_FORMAT(char, bool, "s");
-    _INFRA_DECLARE_PRINTF_FORMAT(char, char[_Size], "s", size_type _Size);
-    _INFRA_DECLARE_PRINTF_FORMAT(char, JUST(string<char, _Size>), "s", size_type _Size);
+    _INFRA_DECLARE_PRINTF_FORMAT(char, JUST(string<char, _Size>), "s", size_t _Size);
 
 
-    //_INFRA_DECLARE_PRINTF_FORMAT(wchar_t, signed short int, INFRA_WSTR("hd"));
     // Add them accordingly if needed
+    //_INFRA_DECLARE_PRINTF_FORMAT(wchar_t, signed short int, INFRA_WSTR("hd"));
 
 #undef _INFRA_DECLARE_PRINTF_FORMAT
 
-    template<typename TCh, size_type _Size, typename T>
+    template<typename TCh, size_t _Size, typename T>
     constexpr auto operator+(const string<TCh, _Size> str, const printf_format<T>) noexcept
     {
         return str + printf_format<T>::format();
     }
 
-    template<typename TCh, size_type _Size, typename T>
+    template<typename TCh, size_t _Size, typename T>
     constexpr auto operator+(const printf_format<T>, const string<TCh, _Size> str) noexcept
     {
         return printf_format<T>::format() + str;
@@ -73,13 +72,13 @@ namespace infra
         return printf_format<T1>::format() + printf_format<T2>::format();
     }
 
-    template<typename TCh, size_type _Size, typename T>
+    template<typename TCh, size_t _Size, typename T>
     constexpr auto operator+(const TCh (&str)[_Size], const printf_format<T>) noexcept
     {
         return str + printf_format<T>::format();
     }
 
-    template<typename TCh, size_type _Size, typename T>
+    template<typename TCh, size_t _Size, typename T>
     constexpr auto operator+(const printf_format<T>, const TCh (&str)[_Size]) noexcept
     {
         return printf_format<T>::format() + str;

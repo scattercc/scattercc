@@ -7,7 +7,7 @@
 
 namespace infra
 {
-    template<typename TCh, size_type _Size>
+    template<typename TCh, size_t _Size>
     class string
     {
         static_assert(_Size > 0, "string must contain at least null terminator");
@@ -20,20 +20,20 @@ namespace infra
 
         constexpr void fill_with(const TCh fill_char) noexcept
         {
-            for (size_type i = 0; i < _Size - 1; ++i)
+            for (size_t i = 0; i < _Size - 1; ++i)
             {
                 value[i] = fill_char;
             }
             write_null_terminator();
         }
 
-        template<size_type _StrSize>
+        template<size_t _StrSize>
         constexpr int compare(const TCh (&str)[_StrSize]) const noexcept
         {
             INFRA_STATIC_ASSERT(_StrSize > 0);
 
-            const size_type minSize = min(_Size, _StrSize);
-            for (size_type i = 0; i < minSize; ++i)
+            const size_t minSize = min(_Size, _StrSize);
+            for (size_t i = 0; i < minSize; ++i)
             {
                 if (value[i] < str[i]) return -1;
                 if (value[i] > str[i]) return 1;
@@ -47,11 +47,11 @@ namespace infra
 
     public:
         template<
-            size_type _SrcStart,
-            size_type _MyStart,
-            size_type _Length,
-            size_type _RepeatTimes,
-            size_type _SrcSize>
+            size_t _SrcStart,
+            size_t _MyStart,
+            size_t _Length,
+            size_t _RepeatTimes,
+            size_t _SrcSize>
         constexpr void copy(const TCh(&src)[_SrcSize]) noexcept
         {
             // Boundary check & make sure no overflow
@@ -65,9 +65,9 @@ namespace infra
             INFRA_STATIC_ASSERT(_SrcStart < _SrcSize);
             INFRA_STATIC_ASSERT(_SrcStart + _Length < _SrcSize);
 
-            for (size_type time = 0; time < _RepeatTimes; time++)
+            for (size_t time = 0; time < _RepeatTimes; time++)
             {
-                for (size_type i = 0; i < _Length; ++i)
+                for (size_t i = 0; i < _Length; ++i)
                 {
                     value[_MyStart + time * _Length + i] = src[_SrcStart + i];
                 }
@@ -91,12 +91,12 @@ namespace infra
         }
 
         // ReSharper disable once CppMemberFunctionMayBeStatic
-        constexpr size_type length() const noexcept
+        constexpr size_t length() const noexcept
         {
             return _Size - 1;
         }
 
-        template<size_type _RepeatTimes>
+        template<size_t _RepeatTimes>
         constexpr auto repeat() const noexcept
         {
             INFRA_STATIC_ASSERT_NO_OVERFLOW_MUL(_Size - 1, _RepeatTimes);
@@ -114,17 +114,17 @@ namespace infra
          * ignoring any possible occurrences before "start".
          * If not found, returns -1.
          */
-        template<size_type _NChars>
-        constexpr size_type find_first_of(const TCh (&chars)[_NChars], size_type start = 0) const noexcept
+        template<size_t _NChars>
+        constexpr size_t find_first_of(const TCh (&chars)[_NChars], size_t start = 0) const noexcept
         {
-            for (size_type pos = start; pos < length(); ++pos)
+            for (size_t pos = start; pos < length(); ++pos)
             {
-                for (size_type i = 0; i < length_of_cstr(chars); ++i)
+                for (size_t i = 0; i < length_of_cstr(chars); ++i)
                 {
                     if (value[pos] == chars[i]) return pos;
                 }
             }
-            return (size_type)-1;
+            return (size_t)-1;
         }
 
         /**
@@ -134,23 +134,23 @@ namespace infra
          * ignoring any possible occurrences after "start".
          * If not found, returns -1.
          */
-        template<size_type _NChars>
-        constexpr size_type find_last_of(const TCh (&chars)[_NChars], size_type start = _Size - 1) const noexcept
+        template<size_t _NChars>
+        constexpr size_t find_last_of(const TCh (&chars)[_NChars], size_t start = _Size - 1) const noexcept
         {
-            for (size_type pos = min(start, length() - 1); pos != (size_type)-1; --pos)
+            for (size_t pos = min(start, length() - 1); pos != (size_t)-1; --pos)
             {
-                for (size_type i = 0; i < length_of_cstr(chars); ++i)
+                for (size_t i = 0; i < length_of_cstr(chars); ++i)
                 {
                     if (value[pos] == chars[i]) return pos;
                 }
             }
-            return (size_type)-1;
+            return (size_t)-1;
         }
 
         /**
          * Return the substring of current string starting from "_Start", with length "_Length"
          */
-        template<size_type _Start, size_type _Length>
+        template<size_t _Start, size_t _Length>
         constexpr auto sub_string() const noexcept
         {
             // Make sure not overflow!
@@ -167,7 +167,7 @@ namespace infra
         /**
          * Return the substring of current string starting from "_Start"
          */
-        template<size_type _Start>
+        template<size_t _Start>
         constexpr auto sub_string() const noexcept
         {
             INFRA_STATIC_ASSERT(_Start < _Size);
@@ -178,7 +178,7 @@ namespace infra
         /**
          * Add padding at end of current string with specific character
          */
-        template<size_type _Length>
+        template<size_t _Length>
         constexpr auto pad_right(const TCh ch) const noexcept
         {
             INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Length, 1);
@@ -192,7 +192,7 @@ namespace infra
         /**
          * Add padding at left of current string with specific character
          */
-        template<size_type _Length>
+        template<size_t _Length>
         constexpr auto pad_left(const TCh ch) const noexcept
         {
             INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(_Length, 1);
@@ -208,27 +208,27 @@ namespace infra
          */
         constexpr bool contains_no_null_char() const noexcept
         {
-            for (size_type pos = 0; pos < length(); ++pos)
+            for (size_t pos = 0; pos < length(); ++pos)
             {
                 if (value[pos] == NULL_CHAR) return false;
             }
             return true;
         }
 
-        constexpr const TCh& operator[](const size_type index) const noexcept
+        constexpr const TCh& operator[](const size_t index) const noexcept
         {
             return value[index];
         }
 
 #define _INFRA_DECLARE_STRING_COMPARE(_Op_) \
-        template<size_type _StrSize> \
+        template<size_t _StrSize> \
         constexpr bool operator _Op_(const TCh(&str)[_StrSize]) const noexcept \
         { \
             INFRA_STATIC_ASSERT(_StrSize > 0); \
             return compare(str) _Op_ 0; \
         } \
         \
-        template<size_type _StrSize> \
+        template<size_t _StrSize> \
         constexpr bool operator _Op_(string<TCh, _StrSize> str) const noexcept \
         { \
             return operator _Op_(str.value); \
@@ -250,7 +250,7 @@ namespace infra
     };  // class string
 
 
-    template<typename TCh, size_type _Size1, size_type _Size2>
+    template<typename TCh, size_t _Size1, size_t _Size2>
     constexpr auto operator+(string<TCh, _Size1> str1, const TCh(&str2)[_Size2]) noexcept
     {
         // Ensure no overflow
@@ -263,13 +263,13 @@ namespace infra
         return result;
     }
 
-    template<typename TCh, size_type _Size1, size_type _Size2>
+    template<typename TCh, size_t _Size1, size_t _Size2>
     constexpr auto operator+(string<TCh, _Size1> str1, string<TCh, _Size2> str2) noexcept
     {
         return str1 + str2.value;
     }
 
-    template<typename TCh, size_type _Size1, size_type _Size2>
+    template<typename TCh, size_t _Size1, size_t _Size2>
     constexpr auto operator+(const TCh(&str1)[_Size1], string<TCh, _Size2> str2) noexcept
     {
         // Ensure no overflow
@@ -279,7 +279,7 @@ namespace infra
         return string<TCh, 1>() + str1 + str2;
     }
 
-    template<typename TCh, size_type _Size>
+    template<typename TCh, size_t _Size>
     constexpr auto operator+(const string<TCh, _Size> str, const TCh ch) noexcept
     {
         // Ensure no overflow
@@ -288,7 +288,7 @@ namespace infra
         return str + string<TCh, 2>(ch);
     }
 
-    template<typename TCh, size_type _Size>
+    template<typename TCh, size_t _Size>
     constexpr auto operator+(const TCh ch, const string<TCh, _Size> str) noexcept
     {
         // Ensure no overflow
@@ -298,19 +298,19 @@ namespace infra
     }
 
 
-    template<size_type _Size>
+    template<size_t _Size>
     constexpr auto make_string(const string<char, _Size> str) noexcept
     {
         return str;
     }
 
-    template<size_type _Size>
+    template<size_t _Size>
     constexpr auto make_string(const char(&str)[_Size]) noexcept
     {
         return string<char, _Size>(str);
     }
 
-    template<size_type _RepeatTimes = 1>
+    template<size_t _RepeatTimes = 1>
     constexpr auto make_string(const char ch) noexcept
     {
         return string<char, _RepeatTimes + 1>(ch);

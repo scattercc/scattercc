@@ -7,16 +7,16 @@ namespace infra
 {
     namespace details
     {
-        template<typename TU, TU _Value, bool _IsZero, size_type _Base>
+        template<typename TU, TU _Value, bool _IsZero, size_t _Base>
         struct positive_to_string;
 
-        template<typename TU, TU _Value, size_type _Base>
+        template<typename TU, TU _Value, size_t _Base>
         struct positive_to_string<TU, _Value, /*_IsZero*/true, _Base>
         {
             static constexpr const auto value = make_string("");
         };
 
-        template<typename TU, TU _Value, size_type _Base>
+        template<typename TU, TU _Value, size_t _Base>
         struct positive_to_string<TU, _Value, /*_IsZero*/false, _Base>
         {
             INFRA_STATIC_ASSERT(_Base > 0);
@@ -28,10 +28,10 @@ namespace infra
 
 
 
-        template<typename TInt, bool _IsZero, bool _IsNegative, size_type _Base>
+        template<typename TInt, bool _IsZero, bool _IsNegative, size_t _Base>
         struct integer_to_string_helper;
 
-        template<typename TUInt, size_type _Base>
+        template<typename TUInt, size_t _Base>
         struct integer_to_string_helper<TUInt, /*_IsZero*/false, /*_IsNegative*/false, _Base>
         {
             template<TUInt _Value>
@@ -46,7 +46,7 @@ namespace infra
             }
         };
 
-        template<typename TInt, size_type _Base>
+        template<typename TInt, size_t _Base>
         struct integer_to_string_helper<TInt, /*_IsZero*/true, /*_IsNegative*/false, _Base>
         {
             template<TInt _Value>
@@ -57,7 +57,7 @@ namespace infra
             }
         };
 
-        template<typename TInt, size_type _Base>
+        template<typename TInt, size_t _Base>
         struct integer_to_string_helper<TInt, /*_IsZero*/false, /*_IsNegative*/true, _Base>
         {
             template<TInt _Value>
@@ -80,7 +80,7 @@ namespace infra
     /**
      * Convert an integer to string representation.
      */
-    template<typename TInt, TInt _Value, size_type _Base = 10>
+    template<typename TInt, TInt _Value, size_t _Base = 10>
     constexpr auto integer_to_string() noexcept
     {
         //INFRA_STATIC_ASSERT(std::is_signed<TInt>::value || std::is_unsigned<TInt>::value);

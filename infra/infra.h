@@ -15,6 +15,7 @@
 
 
 #include <predef/ide.h>
+#include <predef/macro.h>
 #include <predef/maybe_unused.h>
 #include <predef/static_assert.h>
 #include <predef/types.h>

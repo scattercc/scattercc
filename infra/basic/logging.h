@@ -32,19 +32,19 @@ namespace infra
          *   INFRA_CURRENT_FILE: relative path of current file (type: char[N]).
          *   INFRA_CURRENT_LINE: current line (type: char[N]).
          */
-        static constexpr const size_type __source_dir_prefix_length_fname =
+        static constexpr const size_t __source_dir_prefix_length_fname =
             make_string(__FILE__).find_last_of("\\/");
-        INFRA_STATIC_ASSERT(__source_dir_prefix_length_fname != size_type(-1));
+        INFRA_STATIC_ASSERT(__source_dir_prefix_length_fname != size_t(-1));
         INFRA_STATIC_ASSERT(__source_dir_prefix_length_fname > 0);
 
-        static constexpr const size_type __source_dir_prefix_length_infra =
+        static constexpr const size_t __source_dir_prefix_length_infra =
             make_string(__FILE__).find_last_of("\\/", __source_dir_prefix_length_fname - 1);
-        INFRA_STATIC_ASSERT(__source_dir_prefix_length_infra != size_type(-1));
+        INFRA_STATIC_ASSERT(__source_dir_prefix_length_infra != size_t(-1));
         INFRA_STATIC_ASSERT(__source_dir_prefix_length_infra > 0);
 
-        static constexpr const size_type __source_dir_prefix_length_src =
+        static constexpr const size_t __source_dir_prefix_length_src =
             make_string(__FILE__).find_last_of("\\/", __source_dir_prefix_length_infra - 1);
-        INFRA_STATIC_ASSERT(__source_dir_prefix_length_src != size_type(-1));
+        INFRA_STATIC_ASSERT(__source_dir_prefix_length_src != size_t(-1));
         INFRA_STATIC_ASSERT_NO_OVERFLOW_ADD(__source_dir_prefix_length_src, 1);
 
 #define INFRA_CURRENT_FILE \
@@ -53,24 +53,21 @@ namespace infra
             .value)
 
 #define INFRA_CURRENT_LINE \
-        (::infra::integer_to_string<::infra::size_type, ::infra::size_type(__LINE__), 10>().value)
+        (::infra::integer_to_string<::infra::size_t, ::infra::size_t(__LINE__), 10>().value)
 
     }  // namespace details
 
-    struct log_level
+    enum class log_level : int
     {
-        enum
-        {
-            LOG_LEVEL_FATAL = -3,
-            LOG_LEVEL_ERROR = -2,
-            LOG_LEVEL_WARN = -1,
-            LOG_LEVEL_INFO = 0,
-            LOG_LEVEL_DBG1 = 1,
-            LOG_LEVEL_DBG2 = 2,
-            LOG_LEVEL_DBG3 = 3,
-            LOG_LEVEL_DBG4 = 4,
-            LOG_LEVEL_DBG5 = 5,
-        };
+        LOG_LEVEL_FATAL = -3,
+        LOG_LEVEL_ERROR = -2,
+        LOG_LEVEL_WARN = -1,
+        LOG_LEVEL_INFO = 0,
+        LOG_LEVEL_DBG1 = 1,
+        LOG_LEVEL_DBG2 = 2,
+        LOG_LEVEL_DBG3 = 3,
+        LOG_LEVEL_DBG4 = 4,
+        LOG_LEVEL_DBG5 = 5,
     };
 
 }  // namespace infra
@@ -78,7 +75,7 @@ namespace infra
 
 #define _INFRA_LOG_INTERNAL(_Level_, _What_, ...) \
     do { \
-        if (::infra::details::__logging_verbosity >= ::infra::log_level::LOG_LEVEL_##_Level_) \
+        if (::infra::log_level(::infra::details::__logging_verbosity) >= ::infra::log_level::LOG_LEVEL_##_Level_) \
         { \
             ::infra::simple_date_time_t _now_ { }; \
             (void)now_date_time(&_now_); \

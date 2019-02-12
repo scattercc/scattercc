@@ -32,11 +32,11 @@ TEST_CASE("Test infra::string", "[infra]")
 
     INFRA_STATIC_ASSERT(str.find_first_of("xyad") == 0);
     INFRA_STATIC_ASSERT(str.find_first_of("xyde") == 3);
-    INFRA_STATIC_ASSERT(str.find_first_of("xy") == infra::size_type(-1));
+    INFRA_STATIC_ASSERT(str.find_first_of("xy") == infra::size_t(-1));
     INFRA_STATIC_ASSERT(str.find_last_of("xyad") == 3);
     INFRA_STATIC_ASSERT(str.find_last_of("xya!") == 0);
-    INFRA_STATIC_ASSERT(str.find_last_of("xy") == infra::size_type(-1));
-    INFRA_STATIC_ASSERT(str.find_last_of("\0") == infra::size_type(-1));
+    INFRA_STATIC_ASSERT(str.find_last_of("xy") == infra::size_t(-1));
+    INFRA_STATIC_ASSERT(str.find_last_of("\0") == infra::size_t(-1));
     INFRA_STATIC_ASSERT(str.contains_no_null_char());
     INFRA_STATIC_ASSERT(!infra::make_string("abcx\0yz").contains_no_null_char());
 
