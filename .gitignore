@@ -4,3 +4,6 @@
 
 # Build directory
 /build/
+
+# Visual studio files
+/.vs/
